@@ -1,6 +1,6 @@
 cask "openfortidesk" do
-  version "0.3.0-rc.3"
-  sha256 "9f2c567305f43ea5eb118865a89736e9c2e9d64c7fc423c5e3fa5d24ca9c3d4c"
+  version "0.3.0-rc.4"
+  sha256 "31fa776e8387e8f9a197d5f9813b92a259901c8a7dc99208204685efbe6923db"
 
   url "https://github.com/luizmz94/openfortidesk/releases/download/v#{version}/OpenFortiDesk-#{version}-arm64.zip"
   name "OpenFortiDesk"
@@ -54,8 +54,9 @@ cask "openfortidesk" do
     Before brew upgrade: quit OpenFortiDesk with Sair (this disconnects its
     VPNs). The service registration is kept for the upgraded app.
 
-    Before brew uninstall: open the app, use Gerenciar… > Remover serviço, then
-    quit with Sair. Homebrew's sandbox does not allow removing the registration.
+    Before brew uninstall: open the app, use Configurações… > Serviço
+    privilegiado > Remover serviço, then quit with Sair. Homebrew's sandbox does
+    not allow removing the registration.
 
     Migrating from VPNGUI.app: remove its service first the same way.
 
