@@ -1,6 +1,6 @@
 cask "openfortidesk" do
-  version "0.3.0-rc.1"
-  sha256 "0ec0dca98dbc8e838203042afd464d5a43a6de190a2fdf2f77a84c69e5c7af7a"
+  version "0.3.0-rc.2"
+  sha256 "16dc6088fdcbfd8db230aaabf1bfe819e4989e3209a65f95454ce68e07c9d34d"
 
   url "https://github.com/luizmz94/openfortidesk/releases/download/v#{version}/OpenFortiDesk-#{version}-arm64.zip"
   name "OpenFortiDesk"
