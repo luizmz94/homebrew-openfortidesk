@@ -1,6 +1,6 @@
 cask "openfortidesk" do
-  version "0.3.0-rc.2"
-  sha256 "16dc6088fdcbfd8db230aaabf1bfe819e4989e3209a65f95454ce68e07c9d34d"
+  version "0.3.0-rc.3"
+  sha256 "9f2c567305f43ea5eb118865a89736e9c2e9d64c7fc423c5e3fa5d24ca9c3d4c"
 
   url "https://github.com/luizmz94/openfortidesk/releases/download/v#{version}/OpenFortiDesk-#{version}-arm64.zip"
   name "OpenFortiDesk"
@@ -26,8 +26,9 @@ cask "openfortidesk" do
 
   preflight_steps do
     if_path_exists "VPNGUI.app", base: :appdir do
+      # Homebrew runs this in its sandbox: read-only, requires the old service removed.
       run "OpenFortiDesk.app/Contents/MacOS/VPNGUI",
-          args:         ["--prepare-for-maintenance"],
+          args:         ["--prepare-for-legacy-migration"],
           base:         :staged_path,
           sudo:         false,
           must_succeed: true
@@ -37,6 +38,7 @@ cask "openfortidesk" do
     end
   end
 
+  # In Homebrew's sandbox: refuses while the app runs, keeps the registration.
   uninstall_preflight_steps do
     run "OpenFortiDesk.app/Contents/MacOS/VPNGUI",
         args:         ["--prepare-for-maintenance"],
@@ -47,9 +49,19 @@ cask "openfortidesk" do
 
   caveats <<~EOS
     First use: open OpenFortiDesk, activate its service, approve it in System
-    Settings and approve the protected openfortivpn runtime. Release candidate:
-    isolated root lifecycle integration is not yet validated. Profiles, Keychain
-    secrets and the protected runtime survive uninstall. Do not reopen the app
-    during an upgrade. See SECURITY.md before removing managed root files.
+    Settings and approve the protected openfortivpn runtime.
+
+    Before brew upgrade: quit OpenFortiDesk with Sair (this disconnects its
+    VPNs). The service registration is kept for the upgraded app.
+
+    Before brew uninstall: open the app, use Gerenciar… > Remover serviço, then
+    quit with Sair. Homebrew's sandbox does not allow removing the registration.
+
+    Migrating from VPNGUI.app: remove its service first the same way.
+
+    Release candidate: isolated root lifecycle integration is not yet validated.
+    Profiles, Keychain secrets and the protected runtime survive uninstall. Do not
+    reopen the app during an upgrade. See SECURITY.md before removing managed root
+    files.
   EOS
 end
