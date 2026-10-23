@@ -1,0 +1,27 @@
+name: cask checks
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+concurrency:
+  group: checks-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  cask:
+    runs-on: macos-26
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      # Tap this checkout under its own name, so audit sees the real tap.
+      - name: Tap
+        run: |
+          mkdir -p "$(brew --repository)/Library/Taps/luizmz94"
+          ln -s "$GITHUB_WORKSPACE" "$(brew --repository)/Library/Taps/luizmz94/homebrew-openfortidesk"
+      - name: Style
+        run: brew style --cask luizmz94/openfortidesk/openfortidesk
+      # Release candidates are GitHub pre-releases: refused by homebrew/cask, fine in this tap.
+      - name: Audit
+        run: brew audit --cask --online --strict --except=github_prerelease_version luizmz94/openfortidesk/openfortidesk
