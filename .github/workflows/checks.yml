@@ -19,12 +19,12 @@ jobs:
       - name: Tap
         run: |
           mkdir -p "$(brew --repository)/Library/Taps/luizmz94"
-          ln -s "$GITHUB_WORKSPACE" "$(brew --repository)/Library/Taps/luizmz94/homebrew-openfortidesk"
+          ln -s "$GITHUB_WORKSPACE" "$(brew --repository)/Library/Taps/luizmz94/homebrew-tunnelmac"
       - name: Style
-        run: brew style --cask luizmz94/openfortidesk/openfortidesk
+        run: brew style --cask luizmz94/tunnelmac/tunnelmac
       # Release candidates are GitHub pre-releases: refused by homebrew/cask, fine in this tap.
       - name: Audit
         env:
           # read-only job token: the anonymous GitHub API limit is shared by hosted runners
           HOMEBREW_GITHUB_API_TOKEN: ${{ github.token }}
-        run: brew audit --cask --online --strict --except=github_prerelease_version luizmz94/openfortidesk/openfortidesk
+        run: brew audit --cask --online --strict --except=github_prerelease_version luizmz94/tunnelmac/tunnelmac
