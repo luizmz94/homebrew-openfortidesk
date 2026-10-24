@@ -1,10 +1,10 @@
 cask "tunnelmac" do
-  version "0.4.0-rc.1"
-  sha256 "8a54ac96aefdfb1ddc5caf0162dd40348306e5e3d8cbc1ec53f6f7826674331b"
+  version "0.5.0-rc.1"
+  sha256 "64288ea763c244705ca9bdc0adc6c1d0eff47fd178e69f2679ee33356bfcde97"
 
   url "https://github.com/luizmz94/tunnelmac/releases/download/v#{version}/TunnelMac-#{version}-arm64.zip"
   name "TunnelMac"
-  desc "Native GUI for openfortivpn and OpenVPN"
+  desc "Native GUI for openfortivpn, OpenVPN and WireGuard"
   homepage "https://github.com/luizmz94/tunnelmac"
 
   livecheck do
@@ -60,7 +60,8 @@ cask "tunnelmac" do
 
   caveats <<~EOS
     First use: open TunnelMac, activate its service, approve it in System
-    Settings and approve the protected openfortivpn and/or OpenVPN runtime.
+    Settings and approve the protected openfortivpn, OpenVPN and/or
+    wireguard-go runtime.
 
     Before brew upgrade: quit TunnelMac with Sair (this disconnects its
     VPNs). The service registration is kept for the upgraded app.
