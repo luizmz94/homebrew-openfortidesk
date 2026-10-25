@@ -23,7 +23,6 @@ cask "tunnelmac" do
 
   # Updates itself in the app (Sparkle); brew upgrade stays possible.
   auto_updates true
-
   depends_on formula: "openfortivpn"
   depends_on macos: :ventura
 
