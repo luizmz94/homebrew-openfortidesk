@@ -1,8 +1,11 @@
 cask "tunnelmac" do
-  version "0.5.0-rc.3"
-  sha256 "50756c4a210f17dc0e55c40f60cc1f00b4ba96d2b40e1f7242199e9b6550dc2a"
+  arch arm: "arm64", intel: "x86_64"
 
-  url "https://github.com/luizmz94/tunnelmac/releases/download/v#{version}/TunnelMac-#{version}-arm64.zip"
+  version "0.5.0-rc.4"
+  sha256 arm:   "b505f83633a5ecff798e0b52f72caa97c0a01dd5a0885762b03995ed83e3e60e",
+         intel: "d0d5dfe1854f5c077a98a93119483c3c7c6ccc891bf8caa530cfe73da4fd5829"
+
+  url "https://github.com/luizmz94/tunnelmac/releases/download/v#{version}/TunnelMac-#{version}-#{arch}.zip"
   name "TunnelMac"
   desc "Native GUI for openfortivpn, OpenVPN and WireGuard"
   homepage "https://github.com/luizmz94/tunnelmac"
@@ -18,7 +21,6 @@ cask "tunnelmac" do
     end
   end
 
-  depends_on arch: :arm64
   depends_on formula: "openfortivpn"
   depends_on macos: :ventura
 
