@@ -1,6 +1,6 @@
 cask "tunnelmac" do
-  version "0.5.0-rc.1"
-  sha256 "64288ea763c244705ca9bdc0adc6c1d0eff47fd178e69f2679ee33356bfcde97"
+  version "0.5.0-rc.2"
+  sha256 "f5f4172194af48d7b55fb4ff6bab596b09d81d9bf1a559362866174bfbb00cdc"
 
   url "https://github.com/luizmz94/tunnelmac/releases/download/v#{version}/TunnelMac-#{version}-arm64.zip"
   name "TunnelMac"
