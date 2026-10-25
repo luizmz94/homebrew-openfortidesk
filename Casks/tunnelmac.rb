@@ -1,9 +1,9 @@
 cask "tunnelmac" do
   arch arm: "arm64", intel: "x86_64"
 
-  version "0.5.0-rc.5"
-  sha256 arm:   "d41c92a0dcd9b34183e10b720b63bde15e3f55ee7ef8c3df26b0855b109afbca",
-         intel: "e985dc6c88c2f3809186a53146551efb80635626bd9460fd1cbfc79a7e002458"
+  version "0.5.0-rc.6"
+  sha256 arm:   "194cd956d3dc34046b85479439ef57f6032a2eaab6773357595ae368794f15b5",
+         intel: "65098b10b18ffbfa74879b6d256085f12531f9d567c4c495aa8058f06ee3fe42"
 
   url "https://github.com/luizmz94/tunnelmac/releases/download/v#{version}/TunnelMac-#{version}-#{arch}.zip"
   name "TunnelMac"
@@ -20,6 +20,9 @@ cask "tunnelmac" do
       end
     end
   end
+
+  # Updates itself in the app (Sparkle); brew upgrade stays possible.
+  auto_updates true
 
   depends_on formula: "openfortivpn"
   depends_on macos: :ventura
@@ -65,8 +68,10 @@ cask "tunnelmac" do
     Settings and approve the protected openfortivpn, OpenVPN and/or
     wireguard-go runtime.
 
-    Before brew upgrade: quit TunnelMac with Sair (this disconnects its
-    VPNs). The service registration is kept for the upgraded app.
+    Updates: TunnelMac offers new versions and installs them itself
+    (Atualizar agora). To use brew upgrade instead, quit TunnelMac with Sair
+    first (this disconnects its VPNs). The service registration is kept for
+    the upgraded app either way.
 
     Before brew uninstall: open the app, use Configurações… > Serviço
     privilegiado > Remover serviço, then quit with Sair. Homebrew's sandbox does
