@@ -1,9 +1,9 @@
 cask "tunnelmac" do
   arch arm: "arm64", intel: "x86_64"
 
-  version "0.5.0-rc.8"
-  sha256 arm:   "04e8179fa2456d16963b922c4a186ca14747f5e66a5a1e9087c5a12ec9d06f2a",
-         intel: "f14d927b13957513c62c6486dc63e3c8e926fe449d89afe22fa166a4fbd2d085"
+  version "1.0.0"
+  sha256 arm:   "63e1214135acf6142db5a2cd0aef85010058cb677b11dc77a5e3c7fd767472bf",
+         intel: "b5b8e62963d128ed8f2834867e73abcf1c175bdeb17820c728be27e0a60393d7"
 
   url "https://github.com/luizmz94/tunnelmac/releases/download/v#{version}/TunnelMac-#{version}-#{arch}.zip"
   name "TunnelMac"
@@ -23,7 +23,6 @@ cask "tunnelmac" do
 
   # Updates itself in the app (Sparkle); brew upgrade stays possible.
   auto_updates true
-  depends_on formula: "openfortivpn"
   depends_on macos: :ventura
 
   app "TunnelMac.app"
@@ -63,9 +62,10 @@ cask "tunnelmac" do
   end
 
   caveats <<~EOS
-    First use: open TunnelMac, activate its service, approve it in System
-    Settings and approve the protected openfortivpn, OpenVPN and/or
-    wireguard-go runtime.
+    First use: open TunnelMac and follow the setup guide. Pick the VPN types you
+    use and install only those clients (brew install openfortivpn, openvpn
+    and/or wireguard-go; the guide shows the command), activate its service,
+    approve it in System Settings and approve each client once.
 
     Updates: TunnelMac offers new versions and installs them itself
     (Atualizar agora). To use brew upgrade instead, quit TunnelMac with Sair
@@ -80,7 +80,7 @@ cask "tunnelmac" do
     name): remove its service first the same way, quit it, then
     brew uninstall --cask openfortidesk (if installed) before installing.
 
-    Release candidate: isolated root lifecycle integration is not yet validated.
+    Stable release: see the release validation report for supported platforms.
     Profiles, Keychain secrets and the protected runtime survive uninstall. Do not
     reopen the app during an upgrade. See SECURITY.md before removing managed root
     files.
